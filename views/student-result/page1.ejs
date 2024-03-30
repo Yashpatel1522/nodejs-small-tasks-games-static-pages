@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table,tr,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+        td{
+            text-align: center;
+        }
+        .res{
+            text-align: center;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="res">
+          
+    <br>
+    <p>yash vachhani</p>
+    
+    <table style="border: 1px solid black; margin: 0% auto;">
+        <tr>
+            <td rowspan="2">name</td>
+            <td colspan="2">pri</td>
+            <td colspan="2">terminal</td>
+            <td colspan="2">final</td>
+            <td rowspan="2">total</td>
+            <td rowspan="2">view all data</td>
+        </tr>
+        <tr>
+            <td>theory</td>
+            <td>prac</td>
+
+            <td>theory</td>
+            <td>prac</td>
+
+            <td>theory</td>
+            <td>prac</td>
+        </tr>
+        <% for(var i=0;i<res1.length;i++) {%> 
+            <tr>
+                <td><%=res1[i].first_name%></td>
+                <td><%=res1[i].ter_theory_mark%></td>
+                <td><%=res1[i].ter_practical_mark%></td>
+                <td><%=res1[i].pri_theory_mark%></td>
+                <td><%=res1[i].pri_practical_mark%></td>
+                <td><%=res1[i].final_theory_mark%></td>
+                <td><%=res1[i].final_practical_mark%></td>
+                <td><%=res1[i].total_mark%></td>
+                <td><a href="/student-result/res/<%=res1[i].std_id%>"><button>View All</button></a></td>
+            </tr>
+            <% } %>
+    </table>
+
+</div>
+
+        <div class="pagination" style="margin-left:45%; margin-top: 3%;">
+        <% if(pageno == 1) { %>
+            <a href="/student-result/?page=1"><button disabled><<</button></a>
+            <a href="/student-result/?&page=1"><button disabled><</button></a>    
+        <% } else { %>
+                <a href="/student-result/?page=1"><button><<</button></a>
+                <a href="/student-result/?page=<%=pageno-1%>"><button><</button></a>
+        <% } %>
+
+            <a><%=pageno%></a>
+
+        <%if(pageno == 20) { %>
+            <a href="/student-result/?page=20"><button disabled>></button></a>
+            <a href="/student-result/?page=20"><button disabled>>></button></a>
+        <% } else { %>
+                <a  href="/student-result/?page=<%=pageno+1%>"><button>></button></a>
+                <a href="/student-result/?page=20"><button>>></button></a>
+        <% } %>
+
+        <p style="margin-left: -2%; margin-top: 5%;">total record=<%=totalrec%></p>
+        </div> 
+
+
+
+   
+</body>
+
+</html> 

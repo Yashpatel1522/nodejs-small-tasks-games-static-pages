@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* button{
+            transition: transform .5s;
+        }
+        button:hover{
+            transform: scale(1.2);
+            background-color: black;
+            color: white;
+        }
+        .pagination{
+            display: flex;
+            gap: 5px;
+        }
+        table,tr,td{
+            border: 1px solid black;
+            border-collapse:collapse;
+        }
+        td{
+            text-align: center;
+            font-weight: bold;
+            padding: 3px;
+        }
+        body{
+            padding-bottom: 100px;
+        }
+        table{
+            background-color: skyblue;
+        } */
+      
+    </style>
+    <link rel="stylesheet" href="/main-login-project/temp.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if(pageno<=250){ %>
+    <p>order : <%=direction%></p>
+    <div class="pagination" style="margin-left:45%; margin-top: 3%;">
+        <% if(pageno == 1) { %>
+            <a href="/pagination-orderby/users/1"><button disabled><<</button></a>
+            <a href="/pagination-orderby/users/1"><button disabled><</button></a>    
+        <% } else { %>
+                <a href="/pagination-orderby/users/1"><button><<</button></a>
+                <a href="/pagination-orderby/users/<%=pageno-1%>"><button><</button></a>
+        <% } %>
+
+            <a><%=pageno%></a>
+
+        <%if(pageno == 20) { %>
+            <a href="/pagination-orderby/users/20"><button disabled>></button></a>
+            <a href="/pagination-orderby/users/20"><button disabled>>></button></a>
+        <% } else { %>
+                <a  href="/pagination-orderby/users/<%=pageno+1%>"><button>></button></a>
+                <a href="/pagination-orderby/users/20"><button>>></button></a>
+        <% } %>
+
+                    <p style="margin-left: -22%; margin-top: 5%;">total record=<%=totalrec%></p>
+    </div>
+    <table style="border: 1px solid black;">
+        <tr class="btn" style="text-align: center;">
+            
+            <td>
+                Student Id<br>  
+                <a href="/pagination-orderby/users/1/std_id/asc"><button>Aesc</button></a>
+                <a href="/pagination-orderby/users/1/std_id/desc"><button>Desc</button></a>
+            </td>
+
+            <td>First Name
+            <a href="/pagination-orderby/users/1/first_name/asc"><button>Asc</button></a>
+            <a href="/pagination-orderby/users/1/first_name/desc"><button>Desc</button></a>
+            </td>
+            <td>Last Name
+            <a href="/pagination-orderby/users/1/last_name/asc"><button>Asc</button></a>
+            <a href="/pagination-orderby/users/1/last_name/desc"><button>Desc</button></a>
+            </td>
+            <td>Gender
+                <a href="/pagination-orderby/users/1/gender/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/gender/desc"><button>Desc</button></a>
+            </td>
+            <td>birth date<br>
+                <a href="/pagination-orderby/users/1/b_date/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/b_date/desc"><button>Desc</button></a>
+            </td>
+            <td>State<br>
+                <a href="/pagination-orderby/users/1/state/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/state/desc"><button>Desc</button></a>
+            </td>
+            <td>city<br>
+                <a href="/pagination-orderby/users/1/city/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/city/desc"><button>Desc</button></a>
+                </td>
+            <td>Email<br>
+                <a href="/pagination-orderby/users/1/email/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/email/desc"><button>Desc</button></a>
+            </td>
+            <td>Mobile Number<br>
+                <a href="/pagination-orderby/users/1/mobileno/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/mobileno/desc"><button>Desc</button></a>
+                </td>
+            <td>Joining Date<br>
+                <a href="/pagination-orderby/users/1/joining_date/asc"><button>Asc</button></a>
+                <a href="/pagination-orderby/users/1/joining_date/desc"><button>Desc</button></a>
+                </td>
+        </tr>
+
+        <% for(var i=0;i<res1.length;i++) {%> 
+            <tr>
+                <td><%=res1[i].std_id%></td>
+                <td><%=res1[i].first_name%></td>
+                <td><%=res1[i].last_name%></td>
+                <td><%=res1[i].gender%></td>
+                <td><%=res1[i].b_date%></td>
+                <td><%=res1[i].state%></td>
+                <td><%=res1[i].city%></td>
+                <td><%=res1[i].email%></td>
+                <td><%=res1[i].mobileno%></td>
+                <td><%=res1[i].joining_date%></td>
+            </tr>
+            <% } %>
+    </table>
+
+
+      
+        <% } else { %>
+           <p>ERROR : Invalid Page Number</p>
+        <% } %>
+
+</body>
+</html>

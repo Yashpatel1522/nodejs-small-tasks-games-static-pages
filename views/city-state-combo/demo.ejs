@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+            .container{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+    </style>
+    <script src="/city-state-combo/fetchdata.js"></script>
+    <script>
+        var data1=async()=>{
+            var data=await fetchdata('/city-state/state');
+            data=data.map(item=>[item.state_id,item.state_name])
+            printoptions(data,'state')
+        }
+        data1()
+        var selectstate=async()=>{
+                
+            var id=document.getElementById('state');
+            var id_of_state=id.value
+            if(id_of_state!='select state')
+            {
+                document.getElementById('city').disabled=false;
+                var data=await fetchdata(`/city-state/city/${id_of_state}`);
+                console.log(data);
+                data=data.map(ele=>[ele.city_id,ele.city_name]);
+                printoptions(data,'city');
+            }
+            
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <div class="container">
+    
+<body>
+    <select id="state" onchange="selectstate()" style="padding: 5px;"><option>select state</option></select>
+    <select id="city" disabled style="padding: 5px;"><option>select city</option></select>
+</body>
+    </div>
+</html>

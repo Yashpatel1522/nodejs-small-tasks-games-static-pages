@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+            table{
+                    margin-top:100PX ;                
+            }
+            td{
+                padding: 50px;
+                background-color: darkslategrey;
+                color: aliceblue;
+                font-weight: bold;
+                font-size: 30px;
+            }
+            center{
+                color:darkslategray;
+                font-weight: bold;
+                font-size: 30px;
+            }
+    </style>
+    <script>
+        var counter=0;
+        
+        
+        function arraycreate()
+        {
+            var table=document.getElementById("tbl");
+            var arr=Array(Array(),Array(),Array());
+            for(var i=0;i<table.children[0].children.length;i++)
+            {
+                for(var j=0;j<table.children[0].children[i].children.length;j++)
+                {
+                    arr[i][j]=table.children[0].children[i].children[j].innerHTML;
+                }
+            }
+            return arr;
+        }
+        
+        function disp(id)
+        {
+            if(id.innerHTML=="")
+            {
+                counter=counter+1;
+                if(counter%2==0 )
+                {
+                    id.innerHTML= "X";
+                }
+                else
+                {
+                    id.innerHTML= "O";
+                }
+                if(isvalid())
+                {
+                    location.reload();
+                }    
+            }  
+
+        }
+       
+        function isvalid()
+        {
+            if(counter==9)
+            {
+                alert("match draw");
+                return true;
+            }
+            var arr=arraycreate()
+            var res5=res6=res7=res8=0;
+            for(var i=0;i<arr.length;i++)
+            {
+                var res1=res2=res3=res4=0;
+                for(var j=0;j<arr[i].length;j++)
+                {
+                    if(arr[i][j]=="X")res1++;
+                    if(arr[i][j]=="O")res2++;
+                    if(arr[j][i]=="X")res3++;
+                    if(arr[j][i]=="O")res4++;
+                    if(i==j && arr[i][j]=="O")res5++;
+                    if(i==j && arr[i][j]=="X")res6++;
+                    if((arr[i][j]=="O" && i==0 && j==2)||(arr[i][j]=="O" && i==1 && j==1)||(arr[i][j]=="O" && i==2 && j==0))res7++;
+                    if((arr[i][j]=="X" && i==0 && j==2)||(arr[i][j]=="X" && i==1 && j==1)||(arr[i][j]=="X" && i==2 && j==0))res8++;
+                }
+                if(res1==3 || res3==3)
+                {
+                    alert("player 2 win");
+                    return true;
+                }
+                if(res2==3 || res4==3)
+                {
+                    alert("player 1 win");
+                    return true;
+                }
+            }
+            if(res5==3 || res7==3)
+            {
+                alert("player 1 win");
+                return true;
+            }
+            if(res6==3 || res8==3)
+            {
+                alert("player 2 win");
+                return true;
+            }
+            return false;
+        }
+        
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>player 1=O</center>
+    <center>player 2=X</center>
+    
+    <table border="5px" id="tbl" align="center">
+        <tr>
+            <td id="id1" onclick="disp(this)"></td>
+            <td id="id2" onclick="disp(this)"></td>
+            <td id="id3" onclick="disp(this)"></td>
+        </tr>
+        <tr>
+            <td id="id4" onclick="disp(this)"></td>
+            <td id="id5" onclick="disp(this)"></td>
+            <td id="id6" onclick="disp(this)"></td>
+        </tr>
+        <tr>
+            <td id="id7" onclick="disp(this)"></td>
+            <td id="id8" onclick="disp(this)"></td>
+            <td id="id9" onclick="disp(this)"></td>
+        </tr>
+    </table>
+</body>
+</html>

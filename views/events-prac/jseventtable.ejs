@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function onclickchnagename() {
+            document.getElementById('btn1').value = "on click";
+        }
+        function onblurchnage() {
+            let x = document.getElementById("onb");
+            x.value = x.value.toUpperCase();
+        }
+        function oncanplaychange() {
+            document.getElementById("demo").innerHTML = "Can start playing video.";
+        }
+        function onchangefun() {
+            let b = document.getElementById("select").value;
+            document.getElementById("demo2").value = "You selected: " + b;
+        }
+        function dbl() {
+            document.getElementById('dbl2').value = "hi sir";
+        }
+        function fx(y) {
+            y.style.background = "green"
+        }
+        function input() {
+            let i = document.getElementById('inp').value;
+            document.getElementById('inp2').innerHTML = "you write " + i
+
+        }
+        function onkey() {
+            document.getElementById("no1").innerHTML = "You pressed a key inside the input field";
+        }
+        function onkeyp() {
+            alert("You pressed a key inside the input field");
+        }
+        function mouseDown() {
+            document.getElementById("doc").style.color = "green";
+        }
+
+        function mouseUp() {
+            document.getElementById("doc").style.color = "blue";
+        }
+        function bigImg(x) {
+            x.style.height = "64px";
+            x.style.width = "64px";
+        }
+
+        function normalImg(x) {
+            x.style.height = "32px";
+            x.style.width = "32px";
+        }
+        function seto() {
+            document.getElementById("exa").setAttribute("playbackRate", .4);
+        }
+
+        function myspeedslow() {
+            document.getElementById("slow").innerHTML = "The playing speed of the video was changed.";
+        }
+        function mousemove()
+        {
+            alert("mouse movem in box");
+        }
+        function mouseout()
+        {
+            alert("mouse out of the box");
+        }
+        function mover()
+        {
+            document.getElementById('d1').style.backgroundColor="black";
+        }
+        function mout()
+        {
+            document.getElementById('d1').style.backgroundColor="white";
+        }
+        function pointerMove()
+        {
+            document.getElementById("d2").style.backgroundColor = "red"; 
+        }
+        function pointerOut()
+        {
+            document.getElementById("d2").style.backgroundColor = "green"; 
+        }
+        function pup()
+        {
+            document.getElementById("d3").style.borderWidth ="10px"; 
+        }
+        function dow()
+        {
+            document.getElementById("d3").style.backgroundColor ="red"; 
+        }
+        function over()
+        {
+            document.getElementById("d3").style.borderWidth  ="20px"; 
+        }
+    </script>
+</head>
+
+<body>
+
+    <form>
+        <h1>
+            name: yash vahhani<br>
+            emp id: 24DEV094
+        </h1>
+        <table border="5">
+            <tr>
+                <td>on click<br><input type="reset" name="btn1" id="btn1" onclick="onclickchnagename()"></td>
+
+                <td>on blur<input type="text" id="onb" onblur="onblurchnage()"></td>
+
+                <td>onchange<br><select id="select" onchange="onchangefun()">
+                        <option value="yash">yash</option>
+                        <option value="krupali">krupali</option>
+                        <option value="yashvi">yashvi</option>
+                        <option value="mihir">mihir</option>
+                    </select></td>
+
+                <td><input type="text" id="demo2"></td>
+                <td>
+                    ondblclick</ondblclick>
+                    <input type="reset" id="dbl2" ondblclick="dbl()">
+                </td>
+                <td>
+                    <lavbel>ondrag</lavbel>
+                    <br>
+                    <label id="lbl" ondrag="">drag me!</label>
+                </td>
+                <td>
+                    onEror
+                    <input type="image" src="img.jpeg" onerror="alert('the image could not be loaded')">
+                </td>
+                <td>
+                    onfocus
+                    <input type="text" id="fx1" onfocus="fx(this)">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    on input
+                    <input type="text" id="inp" oninput="input()">
+                    <p id="inp2"></p>
+                </td>
+                <td>
+                    oninvalid
+                    <input type="text" oninvalid="alert('invalid without fill submit')" required>
+                    <input type="submit" value="submit" id="invalid">
+                </td>
+                <td>
+                    onkeydown
+                    <input type="text" onkeydown="onkey()">
+                    <p id="no1"></p>
+                </td>
+                <td>
+                    onkeypress
+                    <input type="text" onkeypress="onkeyp()">
+                </td>
+                <td>
+                    onmouseup<br>onmousedown
+                    <p id="doc" onmousedown="mouseDown()" onmouseup="mouseUp()  ">mouseup and down
+                    </p>
+                </td>
+                <td>
+                    onmouseenter<br>onmouseleave
+                    <input type="image" src="engry.jpeg" height="30" width="30" onmouseenter="bigImg(this)"
+                        onmouseleave="normalImg(this)">
+
+                </td>
+                <td>
+                    onratechange
+                    <video id="exa" width="100" height="100" autoplay controls onratechange="seto()" autoplay controls>
+                        <source src="demoo.mp4" type="video/mp4">
+                    </video>
+                    <input type="button" value="slow speed" onclick="myspeedslow()">
+                    <p id="slow"></p>
+                </td>
+                <td>
+                    onmousemove<br>onmouseout
+                    <div onmousemove="mousemove()" onmouseout="mouseout()"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="d1" onmouseover="mover()" onmouseout="mout()">onmouseover<br>onmouseout</div>
+                </td>
+                <td>
+                    onkeyup
+                    <input type="text" onkeyup="alert('key up')">
+                </td>
+                <td>
+                    onmousewheel
+                    <div onwheel="alert('mouse wheel')"></div>
+                </td>
+                <td>
+                    onpointermove
+                    <div onpointermove="alert('POINTER MOVE')"></div>
+                </td>
+                <td>
+                    <div id="d2" onpointermove="pointerMove()" 
+                    onpointerout="pointerOut()">onpointermove<br>onpointerout</div>
+                </td>
+                <td>
+                    <div id="d3" onpointerup="pup()" onpointerdown="dow()" onpointerover="over()">onpointerup<br>onpointerdown<br>onpointerover</div>
+                </td>
+                <td>
+                    <div id="d3" on></div>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+        </table>
+    </form>
+
+
+</body>
+
+</html>

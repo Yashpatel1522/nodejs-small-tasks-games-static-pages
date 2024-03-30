@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        td{
+            border: 1px solid;
+            padding: 10px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="text-align: center; font-size: 30px;">Component</p>
+
+    <div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Input</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Gender</td>
+                <td>Gender Radio Buttons</td>
+            </tr>
+            <tr>
+                <td>Relationship</td>
+                <td>Relationship dropdown</td>
+            </tr>
+            <tr>
+                <td>language</td>
+                <td>Languages Checkbox</td>
+            </tr>
+            <tr>
+                <td>Technology</td>
+                <td>Technology Checkbox</td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td>Location dropdown</td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>Department dropdown</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <form action="/component/" method="get">
+        <input type="text" name="query">
+        <input type="submit" value="Create">
+    </form>
+
+    <% if(data!=false) {%>
+    
+
+    <p><%=data[0].select_name%></p>
+    <% if(data[0].type=='dropdown') {%>
+
+        <% if(data[0].multiple=='yes') {%>
+            <select name="data[0].select_name" multiple>
+            <%}else{%>
+            <select name="data[0].select_name">
+            <%}%>       
+            <%  for(var i=0;i<data.length;i++){%>
+                <option name="<%=data[i].option_key%>"><%=data[i].option_label%></option>
+                <%}%>
+            </select>
+    <%}else{%>
+        <%  for(var i=0;i<data.length;i++){%>
+            <input type="<%=data[i].type%>" name="<%=data[i].select_name%>" id="<%=data[i].option_key%>"><%=data[i].option_label%>
+        <%}%>
+    <%}%>
+
+    <%}%>       
+
+</div>
+    
+</body>
+</html>

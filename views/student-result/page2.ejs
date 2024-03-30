@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table,tr,td{
+            border: 1px solid white;
+            border-collapse: collapse;
+            color: aliceblue;
+        }
+        table{
+            height: 70vh;
+            width: 50%;
+        }
+        td{
+            padding: 5px;
+            text-align: center;
+        }
+        .res{
+            background-color:rgb(50, 27, 27);
+            width: 50%;
+            margin: 0 auto;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= <table style="border: 1px solid black;">
+    <title>Document</title>
+
+</head>
+<body>
+    <div class="res">
+    <h1 style="text-align: center; color: antiquewhite;">Student Name:<%=res1[0].first_name%> <%=res1[0].last_name%></h1>
+    <p style="text-align: center; color: white;">Attendance: <%=res1[0].percentage%>%</p>
+    <table style="border: 1px solid black; margin: 0 auto;">
+    <tr>
+            <td rowspan="2">exam_name</td>
+            <td colspan="2">prilim</td>
+            <td colspan="2">terminal</td>
+            <td colspan="2">final</td>
+            <td rowspan="2">total</td>
+            
+    </tr>
+    <tr>
+        <td>theory</td>
+        <td>prac</td>
+
+        <td>theory</td>
+        <td>prac</td>
+
+        <td>theory</td>
+        <td>prac</td>
+    </tr>
+    <% for(var i=0;i<6;i++) {%> 
+        <tr>
+            <td><%=res2[i*3+1].subject_name%></td>
+            <td><%=res2[i*3].theory_mark%></td>
+            <td><%=res2[i*3].practical_mark%></td>
+            <td><%=res2[i*3+1].theory_mark%></td>
+            <td><%=res2[i*3+1].practical_mark%></td>
+            <td><%=res2[i*3+2].theory_mark%></td>
+            <td><%=res2[i*3+2].practical_mark%></td>
+            <td><%=res2[i*3].practical_mark + res2[i*3].theory_mark + res2[i*3+1].theory_mark + res2[i*3+1].practical_mark + res2[i*3+2].theory_mark + res2[i*3+2].practical_mark%></td>
+        </tr>
+        <% } %>
+    </div>
+</table>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        table{
+            border: 5px solid rgb(14, 10, 17);
+            border-radius: 5px;
+        }
+        body{
+            background-color: rgb(185, 178, 234);
+        }
+        h4{
+            font-weight: bold;
+            color: rgb(114, 93, 249);
+            text-align: center;
+        }
+        table{
+            margin-top: 100px;
+        }
+        td {
+            border: 5px solid black;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+
+    <script>
+        var time=0;
+        function addingrow() {
+            var tbl = document.getElementById("table-1");
+            var row = tbl.rows.length;
+            tr = document.createElement("tr");
+            for (var i = 0; i < tbl.rows[0].cells.length; i++) {
+                td = document.createElement("td");
+                td.setAttribute("onclick", "isvalid(this)");
+                tr.appendChild(td);
+            }
+            tbl.appendChild(tr);
+        }
+        function addingcol() {
+            var tr = document.querySelectorAll("#table-1 tr")
+            for (var tre of tr) {
+                var td = document.createElement("td");
+                td.setAttribute("onclick", "isvalid(this)");
+                tre.appendChild(td);
+            }
+        }
+        
+        function randomRGB(){
+            var roundValue = Math.round, rndmValue = Math.random, maxNum = 255;
+            return 'rgba(' + roundValue(rndmValue() * maxNum) + ',' + roundValue(rndmValue() * maxNum) + ',' + roundValue(rndmValue() * maxNum) + ')';
+        }
+
+        function color()
+        {
+            var tbl=document.getElementById("table-1");
+            var color=randomRGB();
+            
+            var num1=Math.floor((Math.random() * tbl.rows.length));
+            var num2=Math.floor((Math.random() * tbl.rows[0].cells.length));
+            
+    
+            
+            for(var i=0;i<tbl.rows.length;i++)
+            {
+                for(var j=0;j<tbl.rows[i].cells.length;j++)
+                {
+                    if(i==num1 && j==num2)
+                    {
+                        tbl.rows[i].cells[j].style.backgroundColor=color.replace(")",", 0.5)");
+                    }
+                    else
+                    {
+                        tbl.rows[i].cells[j].style.backgroundColor=color;
+                    }
+                    tbl.rows[i].cells[j].id="cell_"+ i +"_"+ j;
+                }
+            }
+
+        }
+        
+        function isvalid(cell){
+            if(cell.style.backgroundColor[3]=="a")
+            {
+                console.log(cell);
+                addingrow();
+                addingcol();
+                color();
+            }
+            else
+            {
+                alert("game over");
+                location.reload();
+            }
+
+        }
+        setInterval(()=>{
+            document.getElementById("timer").innerHTML="30 sec time :"+time++;
+        },1000)
+        setInterval(()=>
+        {
+            alert("time up play again");
+            location.reload();
+        },32000)
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="color()">
+    <table id="table-1" border="5px" align="center" ">
+        <h4>
+            name : yash vachhani<br>
+            EmpId: 24DEV094
+        </h4>
+        <h4 id="timer">
+
+        </h4>
+        <tr>
+            <td onclick="isvalid(this)"></td>
+            <td onclick="isvalid(this)"></td>
+
+        </tr>
+        <tr>
+            <td onclick="isvalid(this)"></td>
+            <td onclick="isvalid(this)"></td>
+
+        </tr>
+    </table>
+</body>
+
+</html>

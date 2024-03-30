@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        const fun=()=>{
+            fetch('/ajax-form/data')
+            .then(response => response.json())
+            .then(json =>{
+                
+                // var key=Object.keys(json[0]);
+                var tbl=document.getElementById('tbl')
+                tbl.innerHTML=""
+                    json.forEach(element=>{
+                       var tr=document.createElement('tr')
+                        var td=document.createElement('td')
+                        td.innerHTML=element.id;
+                        tr.appendChild(td);
+                        var td=document.createElement('td')
+                        td.innerHTML=element.first_name;
+                        tr.appendChild(td);
+                        var td=document.createElement('td')
+                        td.innerHTML=element.last_name;
+                        tr.appendChild(td);
+                     
+                        var td=document.createElement('td')
+                        td.innerHTML=`<p onclick=del(${element.id})>delete</p>`;                  
+                        tr.appendChild(td);
+                       tbl.appendChild(tr);
+                    });
+
+
+            })
+        }
+        var del=async(id)=>{
+            // fun()
+            let res=await fetch(`/ajax-form/delete/${id}`)
+            console.log()
+            if(await res.json()=='deleted')
+            {
+                fun()
+                // location.reload()
+                // fun()
+            }
+
+
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="fun()">
+    <table >
+       
+        <tbody id="tbl"></tbody>
+    </table>
+</body>
+</html>

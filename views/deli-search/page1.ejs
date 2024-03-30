@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h2>yash vachhani</h2>
+    <style>
+        .first-con{
+            margin: 10px 30%;
+        }
+        .first-con input {
+            padding: 5px;
+        }
+        .print-data table{
+            margin: 0 auto;
+        }       
+        .print-data table tr td{
+            border: 1px solid;
+            padding: 6px;
+            text-align: center;
+        } 
+        table,td{
+            border: 1px solid ;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="/main-login-project/temp.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="first-con">
+
+    <form method="post"  action="/deli-search/">
+        <input type="text" name="query" placeholder="serch" style="width: 100%;"><br>
+        <input type="submit" value="go" style="margin-left: 45%; margin-top: 5%;">
+    </form>
+    <table style="margin: 0 auto; margin-top: 4%;">
+        <tr>
+            <td>student id</td>
+            <td>_</td>
+        </tr>
+        <tr>
+            <td>first Name</td>
+            <td>^</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>$</td>
+        </tr>
+        <tr>
+            <td>contact</td>
+            <td>{</td>
+        </tr>
+        <tr>
+            <td>gender</td>
+            <td>}</td>
+        </tr>
+
+        
+    </table>
+    </div>
+    <div class="print-data">
+    <% if(data!=false && fields!=false) {%>
+        <table>
+            <tr>
+                <% for(var i=0;i<fields.length;i++) {%>
+                    <td><%=fields[i]%></td>
+                <%}%>
+            </tr>
+            
+            <% for(var i=0;i<data.length;i++) {%>
+                    <tr>
+                    <% for(var j=0;j<fields.length;j++) {%>
+                        <td><%=data[i][fields[j]]%></td>
+                    <%}%>
+                    </tr>
+            <%}%>
+            
+        </table>
+        <%}else{%>
+            <p>ERROR : something wrong </p>
+    <% } %>     
+    </div>
+</body>
+</html>

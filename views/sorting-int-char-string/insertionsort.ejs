@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h4{
+            text-align: center;
+        }
+        td{
+            background-color: rgb(110, 104, 147);
+            padding: 30px;
+        }
+    </style>
+    <script>
+        function sortint()
+        {
+            var arr=[];
+            arr2=document.getElementById("id1").value.split(",");
+            for(var k=0;k<arr2.length;k++)
+            {
+                arr[k]=Number(arr2[k]);
+            }
+            var pre,next,temp;
+            for(var i=1;i<arr.length;i++)
+            {
+                pre=i-1;
+                next=arr[i];
+                while(pre>=0 && arr[pre]>next)
+                {
+                    arr[pre+1]=arr[pre];
+                    pre--
+                }
+                arr[pre+1]=next;
+            }
+            document.getElementById("id2").innerHTML=arr;
+        }
+        function strchar()
+        {
+            var arr=document.getElementById("i1").value.split(",");
+            var pre,next;
+            for(var i=1;i<arr.length;i++)
+            {
+                pre=i-1;
+                next=arr[i];
+                while(pre>=0 && next.localeCompare(arr[pre])<0)
+                {
+                    arr[pre+1]=arr[pre];
+                    pre--;
+                }
+                arr[pre+1]=next;
+            }
+            document.getElementById("i2").innerHTML=arr;
+        }
+        function tempstrchar()
+        {
+            var arr=document.getElementById("s1").value.split(",");
+            var pre,next;
+            for(var i=1;i<arr.length;i++)
+            {
+                pre=i-1;
+                next=arr[i];
+                while(pre>=0 && next.localeCompare(arr[pre])<0)
+                {
+                    arr[pre+1]=arr[pre];
+                    pre--;
+                }
+                arr[pre+1]=next;
+            }
+            document.getElementById("s2").innerHTML=arr;
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>sorting</h4>
+    <table align="center" border="5px">
+        <form>
+            <tr>
+                <td>insert values int:</td>
+
+                <td>
+                    <input type="text" id="id1">
+                </td>
+
+                <td>
+                    <label id="id2"> sorted :</label>
+                </td>
+                <td>
+                    <input type="reset" id="id3" onclick="sortint()" value="sort">
+                </td>
+            </tr>
+            <tr>
+                <td>insert values char:</td>
+
+                <td>
+                    <input type="text" id="i1">
+                </td>
+
+                <td>
+                    <label id="i2"> sorted :</label>
+                </td>
+                <td>
+                    <input type="reset" id="i3" onclick="strchar()" value="sort">
+                </td>
+            </tr>
+            <tr>
+                <td>insert values String:</td>
+
+                <td>
+                    <input type="text" id="s1">
+                </td>
+
+                <td>
+                    <label id="s2"> sorted :</label>
+                </td>
+                <td>
+                    <input type="reset" id="S3" onclick="tempstrchar()" value="sort">
+                </td>
+            </tr>
+        </form>
+    </table>
+</body>
+</html>

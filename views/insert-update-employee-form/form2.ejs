@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        legend{
+            font-weight: bold;
+        }
+        .border{
+            padding:20px;
+        }
+        *{color: #000000;
+        background-color: #bed4cd;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="/insert-update-employee-form/formvalidation.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return fun()" action="/" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col"><h1 class="text-center text-dark">
+                    Job Application Form
+                </h1></div>
+            </div>
+            <% if(err!='true') {%>
+            <p id="print-err" style="color: white; text-align: center; width: calc(100%/1); background-color: rgb(227, 53, 53); font-weight: bold;">Enter value for <%=err%></p>
+            <%}%>
+            <div class="row">
+                <div class="col">
+                    <fieldset class="border border-2 border-dark">
+                        <legend>
+                            Baisic Details
+                        </legend>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>First Name:</label>
+                                    <input type="text" name="firstname" id="firstname" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last Name:</label>
+                                    <input type="text" name="lastname" id="lastname" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Designation:</label>
+                                    <input type="text" name="designation" id="designation" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Address 1:</label>
+                                    <textarea name="address1" id="address1" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email:</label>
+                                    <input type="text" name="email" id="email" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Address 2</label>
+                                    <textarea name="address2" id="address2" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone number</label>
+                                    <input type="text" name="p_number" id="p_number" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>City</label>
+                                    <input type="text" name="city" id="city" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>state</label>
+                                    <select name="state" class="form-control">
+                                        <option name="state">gujrat</option>
+                                        <option name="state">Up</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Zipcode</label>
+                                    <input type="text" name="zipcode" id="zipcode" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Gender</label>&emsp;&emsp;
+                                    <input type="radio" name="gender" id="male" value="male"
+                                        class="form-check-label"><label for="male">Male&emsp;</label>
+                                    <input type="radio" name="gender" id="female" value="female"
+                                        class="form-check-label"><label for="female">Female</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Relationshil status</label>
+                                    <select name="relation_op" class="form-control">
+                                        <option name="single">single</option>
+                                        <option name="married">married</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Date Of Birth</label>
+                                    <input type="text" name="dob" id="dob" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset class="border border-2 border-dark">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <fieldset class="border border-2 border-dark">
+                        <legend>
+                            Education Information
+                        </legend>
+                        <div class="continer">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>SSC Result</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Name Of Board</label>
+                                    <input type="text" name="ssc" id="sscboard" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>passing year</label>
+                                    <input type="text" name="ssc" id="sscpassingyear" class="form-control" placeholder="YYYY">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>percentage</label>
+                                    <input type="text" name="ssc" id="sscper" class="form-control" min="0" max="100">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>HSC/diploma Result</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Name Of Board</label>
+                                    <input type="text" name="hsc" id="hscboard" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>passing year</label>
+                                    <input type="text" name="hsc" id="hscpassingyear" class="form-control" placeholder="YYYY">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>percentage</label>
+                                    <input type="text" name="hsc" id="hscper" class="form-control" min="0" max="100">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Bachelor Result</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>course name</label>
+                                    <input type="text" name="ug" id="ugcname" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        university
+                                    </label>
+                                    <input type="text" name="ug" id="uguni" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>passing year</label>
+                                    <input type="number" name="ug" id="ugpassingyear" class="form-control" placeholder="YYYY">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>percentage</label>
+                                    <input type="number" name="ug" id="ugper" class="form-control" min="0" max="100">
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Master Result</label>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>course name</label>
+                                    <input type="text" name="pg" id="pgcname" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        university
+                                    </label>
+                                    <input type="text" name="pg" id="pguni" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>passing year</label>
+                                    <input type="number" name="pg" id="pgpassingyear" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>percentage</label>
+                                    <input type="number" name="pg" id="pgper" class="form-control">
+                                </div>
+                            </div>
+    
+                        </div>
+                    </fieldset class="border border-2 border-dark">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <fieldset class="border border-2 border-dark">
+                        <legend>Work Experience</legend>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Company Name</label>
+                                    <input type="text" name="work1" id="cname" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Designation</label>
+                                    <input type="text" name="work1" id="post" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>From</label>
+                                    <input type="text" name="work1" id="fromdate" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>To</label>
+                                    <input type="text" name="work1" id="todate" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Company Name</label>
+                                    <input type="text" name="work2" id="cname2" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Designation</label>
+                                    <input type="text" name="work2" id="post2" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>From</label>
+                                    <input type="text" name="work2" id="fromdate2" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>To</label>
+                                    <input type="text" name="work2" id="todate2" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Company Name</label>
+                                    <input type="text" name="work3" id="cname3" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Designation</label>
+                                    <input type="text" name="work3" id="post3" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>From</label>
+                                    <input type="text" name="work3" id="fromdate3" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>To</label>
+                                    <input type="text" name="work3" id="todate3" class="form-control" placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+    
+                        </div>
+                    </fieldset class="border border-2 border-dark">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <fieldset class="border border-2 border-dark">
+                        <legend>Languages</legend>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="hindi" value="hindi" id="hindi" class="form-check-input"><label for="hindi">Hindi</label>&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="hindi"><input type="checkbox" value="r" name="hindi" id="hindird" class="form-check-input">read</label>&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="hindi" id="hindiwr" value="w" class="form-check-input">Write&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="hindi" id="hindisp" value="s" class="form-check-input">speak&emsp;
+                                </div>
+                            </div>
+    
+    
+    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="checkbox" value="english" name="english" id="english"
+                                        class="form-check-input">English&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="english" id="englishrd" value="r"
+                                        class="form-check-input">Read&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="english" id="englishwr" value="w"
+                                        class="form-check-input">Write&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="english" id="englishsp" value="s"
+                                        class="form-check-input">speak&emsp;
+                                </div>
+                            </div>
+    
+    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="checkbox" value="gujrati" name="gujrati" id="gujrati"
+                                        class="form-check-input">Gujrati&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="gujrati" id="gujratird" value="r"
+                                        class="form-check-input">Read&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="gujrati" id="gujratiwr" value="w"
+                                        class="form-check-input">Write&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" name="gujrati" id="gujratisp" value="s"
+                                        class="form-check-input">speak&emsp;
+                                </div>
+                            </div>
+    
+                        </div>
+                    </fieldset class="border border-2 border-dark">
+                </div>
+                    <div class="col-md-6">
+                        <fieldset class="border border-2 border-dark">
+                            <legend>techno know</legend>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="checkbox" name="php" id="php" class="form-check-label">php&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="php" id="phpbeginer"
+                                            class="form-check-input">Beginer&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="php" id="phpmediator"
+                                            class="form-check-input">Mediator&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="php" id="phpexpert" class="form-check-input">Expert
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="checkbox" name="mysql" id="mysql" class="form-check-label">mysql&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="mysql" id="mysqlbeginer"
+                                            class="form-check-input">Beginer&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="mysql" id="mysqlmediator"
+                                            class="form-check-input">Mediator&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="mysql" id="mysqlexpert" class="form-check-input">Expert
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="checkbox" name="laravel" id="laravel"
+                                            class="form-check-label">laravel&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="laravel" id="laravelbeginer"
+                                            class="form-check-input">Beginer&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="laravel" id="laravelmediator"
+                                            class="form-check-input">Mediator&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="laravel" id="laravelexpert"
+                                            class="form-check-input">Expert
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="checkbox" name="oracle" id="oracle"
+                                            class="form-check-label">Oracle&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="oracle" id="oraclebeginer"
+                                            class="form-check-input">Beginer&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="oracle" id="oraclemediator"
+                                            class="form-check-input">Mediator&emsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="oracle" id="oracleexpert" class="form-check-input">Expert
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </fieldset class="border border-2 border-dark">
+                    </div>
+            </div>
+    
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <fieldset class="border border-2 border-dark">
+                        <legend>Refrence Contect</legend>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Name</label>
+                                    <input type="text" name="pre1" id="name" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Contect Number</label>
+                                    <input type="text" name="pre1" id="cnumber" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Relation</label>
+                                    <input type="text" name="pre1" id="relation" class="form-control">
+                                </div>
+    
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Name</label>
+                                    <input type="text" name="pre2" id="name" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Contect Number</label>
+                                    <input type="text" name="pre2" id="cnumber" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Relation</label>
+                                    <input type="text" name="pre2" id="relation" class="form-control">
+                                </div>
+    
+                            </div>
+    
+    
+                        </div>
+                    </fieldset class="border border-2 border-dark">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <fieldset class="border border-2 border-dark">
+                        <legend>Preferances</legend>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>prefered location</label>
+                                    <select multiple class="form-control" name="pre_loc">
+                                        <option value="rajkot">Rajkot</option>
+                                        <option value="Ahemdabad">Ahemdabad   </option>
+                                        <option value="Vadodra">Vadodra</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Notice Period</label>
+                                    <input type="text" name="np" id="np" class="form-control"><br>
+                                    <label>Expected CTC</label>
+                                    <input type="text" name="cctc" id="ectc" class="form-control" placeholder="1XXXX0"><br>
+                                    <label>Current CTC</label>
+                                    <input type="text" name="ectc" id="cctc" class="form-control" placeholder="1XXXX0">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Department</label>
+                                    <select class="form-control" name="dept" id="dept"><option>Developer</option><option>Marketing</option></select>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset class="border border-2 border-dark">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md">
+                    <center><input type="submit" class="btn btn-info" value="submit" name="submit" id="submit"></center>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

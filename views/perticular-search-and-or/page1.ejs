@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .first-con{
+            margin: 10px 30%;
+        }
+        .first-con input {
+            padding: 5px;
+        }
+        .print-data table{
+            margin: 0 auto;
+        }       
+        .print-data table tr td{
+            border: 1px solid;
+            padding: 6px;
+            text-align: center;
+        } 
+    </style>
+    <link rel="stylesheet" href="/main-login-project/temp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="first">
+    <form action="/and-or-search/" method="get">
+        <input type="text" name="id2" placeholder="student id">
+        <input type="submit" value="go">
+    </form>
+    <button onclick="fun('sec')">show more</button>
+    
+    <div class="sec" id="sec" style="display: none;">
+        <form action="/and-or-search/" method="get">
+        <table>
+            <tr>
+                <% for(var i=0;i<fields.length;i++) {%>
+                <input type="text" name='<%=fields[i]%>' value="" placeholder='<%=fields[i]%>'>
+                <%}%>
+                <td>
+                    <select name="select">
+                        <option value="and">AND</option>
+                        <option value="or">OR</option>
+                    </select>
+                    <input type="submit" value="go">
+
+                </td>
+
+                
+            </tr>
+        </table>
+        </form>
+    </div>
+
+   </div>
+    <div class="print-data">
+    <% if(data!=false && fields!=false) {%>
+        <table>
+            <tr>
+                <% for(var i=0;i<fields.length;i++) {%>
+                    <td><%=fields[i]%></td>
+                <%}%>
+            </tr>
+            
+            <% for(var i=0;i<data.length;i++) {%>
+                    <tr>
+                    <% for(var j=0;j<fields.length;j++) {%>
+                        <td><%=data[i][fields[j]]%></td>
+                    <%}%>
+                    </tr>
+            <%}%>
+            
+        </table>
+        <%}else{%>
+            <p>ERROR : something wrong </p>
+    <% } %>     
+    </div>
+</body>
+<script>
+    var count=0;
+    const fun=(id)=>{
+        var id=document.getElementById(id);
+        if(count==0)
+        {
+            count=1;
+            id.style.display="block"
+        }
+        else
+        {
+            count=0;
+            id.style.display="none"
+        }
+    }
+</script>
+</html>

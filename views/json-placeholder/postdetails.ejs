@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        td{
+            border: 1px solid black;
+        }
+        table
+        {
+            padding: 15px;
+        }
+        td{
+            padding: 5px;
+        }
+        tr:nth-child(even) {background: #d7d7d8}
+        tr:nth-child(odd) {background:  #fff}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <table id="tbl2">
+    </table>
+    <table id="tbl3" style="display:none;">
+    </table>
+    <script src="/json-placeholder/viewapidata.js"></script>
+    
+    <script>
+        var arr=window.location.href.split('/');
+        id=arr[arr.length-1];
+        
+        const fun=async()=>{
+            var response=await fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
+            return await response.json();
+        }
+
+        fun().then(async(data)=>{
+            viewapidata('tbl2',await data,'tbl3');
+        })
+        // toggle(id,'tbl3');
+    </script>
+    
+</body>
+
+</html>

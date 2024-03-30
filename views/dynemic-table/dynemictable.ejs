@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        td{
+            padding: 50px;
+        }
+    
+
+        /* tr:nth-of-type(even) td:nth-of-type(even), tr:nth-of-type(odd) td:nth-of-type(odd){
+            background-color: black;
+        } */
+    </style>
+    <script>
+        function addcol()
+        {
+            let tr = document.querySelectorAll("#table-1   tr");
+         
+            for(let trs of tr)
+            {
+                let td=document.createElement("td");
+                trs.appendChild(td);
+            }  
+            color();
+        }
+        function color()
+        {
+            let tbl = document.querySelector("#table-1");
+            let col=document.getElementById("table-1").rows[0].cells.length;
+            let row=document.getElementById("table-1").rows.length;
+            for(let i=0;i<row;i++)
+            {
+             
+                for(let j=0;j<col;j++)
+                {
+                    let cel=tbl.rows[i].cells[j];
+                    if((i%2!=0 && j%2!=0) || (i%2==0 && j%2==0))
+                    {
+                            cel.style.background = "black";
+
+                    }
+                    else
+                    {
+                            cel.style.background = "skyblue";
+                    }
+                }
+            }
+            
+        }
+        function addrow()
+        {
+
+            let tbl = document.querySelector("#table-1");
+            let tr=document.createElement("tr");
+               
+            let col=tbl.rows[0].cells.length;
+            for(let i=0 ; i<col ; i++)
+            {
+                let td=document.createElement("td");
+                tr.appendChild(td);
+            }
+            tbl.appendChild(tr);
+            color();
+        }
+        function removerow()
+        {
+            let tbl=document.querySelector("#table-1");
+            let row=document.getElementById("table-1").rows.length;
+                 
+            if(row>2)
+            {
+                tbl.deleteRow(row-1)
+                row--;
+                return;   
+            }   
+        }
+
+        function removecol()
+        {
+            let tbl=document.querySelector("#table-1");
+            let col2=document.getElementById("table-1").rows[0].cells.length;
+            let row=document.getElementById("table-1").rows.length;
+            if(col2>2)
+            {
+                for(let i=0;i<row;i++)
+                {
+                    
+                    tbl.rows[i].deleteCell(col2-1); 
+                }
+            }
+        }
+
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="table-1" border="2">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        
+    </table>
+    <input type="submit" id="addcol" onclick="addcol()" onclick="color()" value="Addcol">
+    <input type="submit" id="removecol" onclick="removecol()" value="RemoveCol">
+
+    <input type="submit" id="addrow" onclick="addrow()" value="AddRow">
+    <input type="submit" id="removerow" onclick="removerow()" value="RemoveRow">
+
+</body>
+</html>

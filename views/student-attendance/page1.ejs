@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table,tr,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+   
+    <% if(pageno<21) { %>
+          
+    <br>
+    <p>yash vachhani</p>
+    <select id="selectid" onchange="myfun()">
+        <% if(mon =='12-2023') {%>
+            <option value="12-2023&page=1" selected>dec-2023</option>
+            <option value="1-2024&page=1">jan-2024</option>
+            <option value="2-2024&page=1">feb-2024</option>
+        <% } %>
+        <% if(mon =='1-2024') {%>
+            <option value="12-2023&page=1">dec-2023</option>
+            <option value="1-2024&page=1" selected>jan-2024</option>
+            <option value="2-2024&page=1">feb-2024</option>
+        <% } %>
+        <% if(mon =='2-2024') {%>
+            <option value="12-2023&page=1">dec-2023</option>
+            <option value="1-2024&page=1">jan-2024</option>
+            <option value="2-2024&page=1" selected>feb-2024</option>
+        <% } %>
+    </select>
+    <table style="border: 1px solid black;">
+        <tr>
+            <td>student id</td>
+            <td>first name</td>
+            <td>no of days</td>
+            <td>percentage</td>
+        </tr>
+
+        <% for(var i=0;i<res1.length;i++) {%> 
+            <tr>
+                <td><%=res1[i].std_id%></td>
+                <td><%=res1[i].first_name%></td>
+                <td><%=res1[i].no_of_day%></td>
+                <td><%=res1[i].percentage%>%</td>
+            </tr>
+            <% } %>
+    </table>
+    <div class="pagination" style="margin-top: 5%;">
+        <% if(pageno == 1) { %>
+            <a href="/std-attendance/?month=<%=mon%>&page=1"><button disabled><<</button></a>
+            <a href="/std-attendance/?month=<%=mon%>&page=1"><button disabled><</button></a>    
+        <% } else { %>
+                <a href="/std-attendance/?month=<%=mon%>&page=1"><button><<</button></a>
+                <a href="/std-attendance/?month=<%=mon%>&page=<%=pageno-1%>"><button><</button></a>
+        <% } %>
+
+            <a><%=pageno%></a>
+
+        <%if(pageno == 20) { %>
+            <a href="/std-attendance/?page=20"><button disabled>></button></a>
+            <a href="/std-attendance/?page=20"><button disabled>>></button></a>
+        <% } else { %>
+                <a  href="/std-attendance/?month=<%=mon%>&page=<%=pageno+1%>"><button>></button></a>
+                <a href="/std-attendance/?month=<%=mon%>&page=20"><button>>></button></a>
+        <% } %>
+
+        <p style="margin-left: -2%; margin-top: 5%;">total record=<%=totalrec%></p>
+    </div>
+     <% } else { %>
+            <h2>ERROR : Invalid Page</h2>
+        <% } %>
+</div>
+
+</body>
+
+<script>
+
+    let myfun= ()=>{
+            let mon=document.getElementById('selectid');
+            var data=mon.value
+            window.location=`http://localhost:8000/std-attendance?month=${data}`;
+        }
+</script>
+</html>
