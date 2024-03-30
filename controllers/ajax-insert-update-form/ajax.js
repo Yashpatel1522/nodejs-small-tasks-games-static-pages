@@ -176,13 +176,13 @@ const postForm=(async(req,res)=>{
 })
 const getData=(async(req,res)=>{
     var db=new database('combinedtasks')
-    var res2=await db.executrquery("select id,first_name,last_name from candidate_masters");
+    var res2=await db.executrquery("select id,first_name,last_name,email,phone_no,gender from candidate_masters");
     res.send(res2);
 })
 
 
 const getDisplay=(async(req,res)=>{
-    res.render('ajax-insert-update-form/display.ejs')
+    res.render('ajax-insert-update-form/gridpage.ejs')
 })
 
 const getDeleteId=(async(req,res)=>{
@@ -195,7 +195,7 @@ const getDeleteId=(async(req,res)=>{
     db.delete('work_experiences2',{candidate_id:id})
     db.delete('technologies',{candidate_id:id})
     db.delete('candidate_masters',{id:id})
-    res.json('deleted')
+    res.redirect("/ajax-form/display")
 })
 
 const getDataId=(async(req,res)=>{
