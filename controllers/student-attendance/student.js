@@ -1,6 +1,7 @@
 const mysql=require('mysql');
+const database = require('../../models/ajax-insert-update-form/database');
 
-const getAttendance=((req,res)=>{
+const getAttendance=(async(req,res)=>{
             
             var query = require("url").parse(req.url, true).query;
             var data_per_page=10;
@@ -13,37 +14,23 @@ const getAttendance=((req,res)=>{
             var mon=arr[0];
             var year=arr[1];
 
-        var con=mysql.createConnection({
-            host:"localhost",
-            user:"root",
-            password:"Root@123",
-            database:"combinedtasks"
-        });
-        
-        con.connect((err)=>{
-            if(err)console.log(err)
-            console.log("conected....");
-    
-    
-            var q=`select stdatt_student_master.std_id,first_name,last_name,count(stdatt_attendance.std_id) as no_of_day,round(count(stdatt_attendance.std_id)/.3,2) as "percentage"from stdatt_student_master left join stdatt_attendance on stdatt_student_master.std_id=stdatt_attendance.std_id where attendance="present" and month(attance_date)=${mon} and year(attance_date)=${year} group by stdatt_attendance.std_id order by stdatt_attendance.std_id asc limit ${data_per_page} offset ${start};`
-    
-            var mypromise=new Promise((resolve,reject)=>{
-                con.query(q,(err,result)=>{
-                    if(err)reject(err);
-                    else
-                    {
-                        resolve(result);
-                    }
-                })
-            })
-            mypromise.then((data)=>{
+        var con=new database("combinedtasks");
+        var q=`select stdatt_student_master.std_id,first_name,last_name,count(stdatt_attendance.std_id) as no_of_day,round(count(stdatt_attendance.std_id)/.3,2) as "percentage"from stdatt_student_master left join stdatt_attendance on stdatt_student_master.std_id=stdatt_attendance.std_id where attendance="present" and month(attance_date)=${mon} and year(attance_date)=${year} group by stdatt_attendance.std_id order by stdatt_attendance.std_id asc limit ${data_per_page} offset ${start};`
+        try{
+            var data=await con.executrquery(q)
+            if(typeof(data)=="string")
+            {
                 console.log(data);
+            }
+            else
+            {   
                 res.render('student-attendance/page1.ejs',{res1:data,mon:mon_year,pageno:page,totalrec:total_record});
-            }).catch((err)=>{
-                console.log(err);
-            })
-    
-     })
+            }
+        }
+        catch(e)
+        {
+            console.log(e)
+        }      
 })
 
 module.exports=getAttendance;

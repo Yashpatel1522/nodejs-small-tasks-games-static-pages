@@ -1,5 +1,5 @@
 const express=require('express');
-const database = require('../../models/city-state-combo/database');
+const database = require('../../models/ajax-insert-update-form/database');
 // const database = require('./package/database');
 const router=express.Router()
 
