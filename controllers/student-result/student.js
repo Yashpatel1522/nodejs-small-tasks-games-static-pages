@@ -15,7 +15,7 @@ const getResult=(async(req,res)=>{
     var mon=arr[0];
     var year=arr[1];
 
-    var con=new database("combinedtasks")
+    var con=new database(process.env.database)
 
     var q=`select stdatt_student_master.std_id,stdatt_student_master.first_name,
     sum( 
@@ -78,7 +78,7 @@ const getResult=(async(req,res)=>{
 const getResId=(async(req,res)=>{
 var id=Number(req.params.id);
 
-var con=new database("combinedtasks")
+var con=new database(process.env.database)
 
 var q=`select stdatt_student_master.std_id,first_name,last_name,
 count(stdatt_attendance.std_id) as no_of_day,

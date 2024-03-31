@@ -14,11 +14,7 @@ const postInsert=(serverside,async(req,res)=>{
     var data=req.body;
     // console.log(data);
 
-    var db=new connection('combinedtasks')
-
- 
-
-
+    var db=new connection(process.env.database)
 
     var res1=await db.createquery('baisic_details',{
         fname:data.firstname,
@@ -289,7 +285,7 @@ const getData=(async(req,res)=>{
    
     var id=req.params.id
     // console.log(id);
-    var db=new connection('combinedtasks')
+    var db=new connection(process.env.database)
     var baisic_details=await db.fatchdata2('baisic_details',id);
     var education=await db.fatchdata2('education',id);
     var languages=await db.fatchdata2('language_known',id);
@@ -339,7 +335,7 @@ const postUpdate=(serverside,async(req,res)=>{
     var conditions={
         can_id:data.canid
     }
-    var obj=new connection('combinedtasks')
+    var obj=new connection(process.env.database)
     var result=await obj.update('baisic_details',obj10,conditions);
 
     var oldres=await obj.fatchdata2('education',data.canid)

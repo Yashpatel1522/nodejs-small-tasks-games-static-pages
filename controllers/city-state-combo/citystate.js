@@ -7,20 +7,20 @@ const getDemo=((req,res)=>{
     res.render('city-state-combo/demo.ejs')
 })
 const getState=(async(req,res)=>{
-    var obj=new database('state');
+    var obj=new database(process.env.database);
     var ans=await obj.executrquery('select * from states');
     console.log(ans)
     res.send(ans);
 })
 
 const getCity=(async(req,res)=>{
-    var obj=new database('state');
+    var obj=new database(process.env.database);
     var ans=await obj.executrquery('select * from cities');
     res.send(ans);
 })
 const getCityId=(async(req,res)=>{
     
-    var obj=new database('state');
+    var obj=new database(process.env.database);
     var ans=await obj.executrquery(`select * from cities where state_id=${req.params.id}`);
     res.send(ans);
 })

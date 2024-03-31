@@ -12,7 +12,7 @@ const getRegForm=((req,res)=>{
 const postUser=(async(req,res)=>{
     var data=req.body
     // console.log(data)
-    var db=new database('combinedtasks');
+    var db=new database(process.env.database);
     var result=await db.executrquery(`select * from users where email='${data.email}' or phone_no='${data.phone_no}'`)
    
     if(typeof(result)=="string")
@@ -73,7 +73,7 @@ const postUser=(async(req,res)=>{
 })
 
 const getUserActivation=async(req,res)=>{
-    db=new database('combinedtasks');
+    db=new database(process.env.database);
     var result=await db.executrquery(`select create_time from users where activation_code='${req.params.activationcode}'`)
     // console.log(result)
     
@@ -106,7 +106,7 @@ const postUserActivation=(async(req,res)=>{
 
     if(data.password!="")
     {
-        var db=new database('combinedtasks');
+        var db=new database(process.env.database);
         var result=await db.update({status:'Active'},'users',{activation_code:req.params.activationcode})
         console.log(result)
         if(result.changedRows>0)
@@ -137,7 +137,7 @@ const postUserActivation=(async(req,res)=>{
 })
 
 const getDataActivation=(async(req,res)=>{
-    var db=new database('combinedtasks');
+    var db=new database(process.env.database);
     var result=await db.executrquery(`select email from users where activation_code='${req.params.activationcode}'`)
     res.send(result);
 })
@@ -147,7 +147,7 @@ const getLogin=((req,res)=>{
 
 const postLogin=(async(req,res)=>{
 
-    var db=new database('combinedtasks')
+    var db=new database(process.env.database)
     // console.log(`select * from users where email='${req.body.emaillogin}' or phone_no='${req.body.emaillogin}'`)
     var result=await db.executrquery(`select * from users where email='${req.body.emaillogin}' or phone_no='${req.body.emaillogin}'`)
     if(result.length==0)
@@ -188,7 +188,7 @@ const getForget=('/forget',(req,res)=>{
 })
 const postForget=('/forget',async(req,res)=>{
     var data=req.body;
-    var db=new database("combinedtasks")
+    var db=new database(process.env.database)
     var currtime=new Date();
     // console.log(`${currtime.getFullYear()}-${currtime.getMonth()}-${currtime.getDate()} ${currtime.getHours()}:${+currtime.getMinutes()}:${currtime.getSeconds()}`)
    
@@ -251,7 +251,7 @@ const postForget=('/forget',async(req,res)=>{
 
 const getForgetActivation=(async(req,res)=>{
     console.log(req.params.activationcode)
-    db=new database('combinedtasks');
+    db=new database(process.env.database);
     var result=await db.executrquery(`select for_forgot from users where activation_code='${req.params.activationcode}'`)
 
     console.log(result)

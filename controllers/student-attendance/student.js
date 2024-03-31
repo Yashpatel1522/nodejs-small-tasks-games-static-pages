@@ -14,7 +14,7 @@ const getAttendance=(async(req,res)=>{
             var mon=arr[0];
             var year=arr[1];
 
-        var con=new database("combinedtasks");
+        var con=new database(process.env.database);
         var q=`select stdatt_student_master.std_id,first_name,last_name,count(stdatt_attendance.std_id) as no_of_day,round(count(stdatt_attendance.std_id)/.3,2) as "percentage"from stdatt_student_master left join stdatt_attendance on stdatt_student_master.std_id=stdatt_attendance.std_id where attendance="present" and month(attance_date)=${mon} and year(attance_date)=${year} group by stdatt_attendance.std_id order by stdatt_attendance.std_id asc limit ${data_per_page} offset ${start};`
         try{
             var data=await con.executrquery(q)

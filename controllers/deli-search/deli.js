@@ -7,7 +7,7 @@ const database = require('../../models/ajax-insert-update-form/database');
 
 
 const getDeli=(async(req,res)=>{
-    var db=new database("combinedtasks");
+    var db=new database(process.env.database);
 
 
     try{
@@ -91,7 +91,7 @@ const postDeli=(async(req,res)=>{
         q+=gender;
     }
     console.log(q);
-    var db=new database("combinedtasks");
+    var db=new database(process.env.database);
 
 
     try{

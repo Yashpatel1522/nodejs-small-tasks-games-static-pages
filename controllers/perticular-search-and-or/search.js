@@ -4,7 +4,7 @@ const router=express.Router();
 
 
 const getSearch=((req,res)=>{
-    var db=new database("combinedtasks");
+    var db=new database(process.env.database);
     var onlyid=req.query.id2;
     var op=req.query.select;
     

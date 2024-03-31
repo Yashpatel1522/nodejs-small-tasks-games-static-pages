@@ -9,7 +9,7 @@ const getForm=((req,res)=>{
 
 const postForm=(async(req,res)=>{
     var data=req.body;
-   var db=new database('combinedtasks')
+   var db=new database(process.env.database)
    console.log(data)
    obj={
     first_name:data.first_name,
@@ -175,7 +175,7 @@ const postForm=(async(req,res)=>{
    
 })
 const getData=(async(req,res)=>{
-    var db=new database('combinedtasks')
+    var db=new database(process.env.database)
     var res2=await db.executrquery("select id,first_name,last_name,email,phone_no,gender from candidate_masters");
     res.send(res2);
 })
@@ -188,7 +188,7 @@ const getDisplay=(async(req,res)=>{
 const getDeleteId=(async(req,res)=>{
     id=req.params.id
     console.log(id)
-    var db=new database('combinedtasks');
+    var db=new database(process.env.database);
     db.delete('education_details',{candidate_id:id})
     db.delete('languages',{candidate_id:id})
     db.delete('reference_contacts',{candidate_id:id})
@@ -201,7 +201,7 @@ const getDeleteId=(async(req,res)=>{
 const getDataId=(async(req,res)=>{
    
     var id=req.params.id
-    var db=new database('combinedtasks')
+    var db=new database(process.env.database)
     var candidate_masters=await db.executrquery(`select * from candidate_masters where id=${id}`);
 
     console.log(candidate_masters);
@@ -243,7 +243,7 @@ const getUpdateId=((req,res)=>{
 const postUpdateId=(async(req,response)=>{
     var data=req.body;
      console.log(req.body);
-     var db=new database('combinedtasks');
+     var db=new database(process.env.database);
      var res=await db.delete('education_details',{candidate_id:req.params.id})
      console.log('--------------------------------')
         console.log(res);

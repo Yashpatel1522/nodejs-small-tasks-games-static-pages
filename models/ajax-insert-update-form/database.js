@@ -4,9 +4,9 @@ class database{
 
     constructor(db)
     {
-        this.user='root';
-        this.host='localhost';
-        this.password='';
+        this.user=process.env.user;
+        this.host=process.env.host;
+        this.password=process.env.password;
         this.database=db;
         
     }

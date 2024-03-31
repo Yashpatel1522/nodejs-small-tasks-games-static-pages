@@ -5,7 +5,7 @@ const router=express.Router();
 
 
 const getComponent=(async(req,response)=>{
-    var db=new database('combinedtasks');
+    var db=new database(process.env.database);
     
     var name=req.query.query;
 
