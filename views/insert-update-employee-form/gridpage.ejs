@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .color{
+            background-color: black;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+           
+        }
+        .color:hover{
+            color: white;
+            background-color: rgb(128, 215, 128);
+            border-radius: 5px;
+        }
+
+        #search{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #btn1{
+            background-color: rgb(128, 215, 128);
+        }
+        .page-btn{
+           align-items: center;
+           justify-content: center;
+        }
+        table{
+            margin: 0 auto;
+        }
+        
+        td{
+            text-align: center;
+            border: 1px solid;
+            padding: 15px;
+        }
+        tr:nth-child(even) {background: #d7d7d8}
+        tr:nth-child(odd) {background:  #fff}
+    </style>
+    <link rel="stylesheet" href="/main-login-project/temp.css">
+    <script src="/insert-update-employee-form/printdata.js"></script>
+    <script>
+        let data = fun().then(async (data) => {
+            var obj;
+
+                // obj={
+                //     data:await data,
+                //     record_per_page:10,
+                //     btn_id:['first','prev','next','last'],
+                //     print_id:'print',
+                //     table_id:'tbl1',
+                // }
+
+                var div=document.getElementById('search');
+
+                var search=document.createElement('input');
+                search.type='text';
+
+                div.appendChild(search)
+
+
+                // var btn=document.createElement('button');
+                // btn.setAttribute('id','btn1');
+                // btn.innerHTML="search";
+                // div.appendChild(btn);
+                console.log(await data);
+
+                const exe=()=>{
+                    search.addEventListener('keyup',async()=>{
+                
+                // window.location.reload()        
+                var arr=await data.filter((ele)=>{
+                console.log(search.value);
+                return(
+                    ele.can_id==search.value || ele.fname.includes(search.value) ||ele.lname.includes(search.value)||ele.email.includes(search.value)||ele.phone_number.includes(search.value)||ele.gender.includes(search.value)
+                )   
+                })
+
+
+        //     var div=document.getElementById('search');
+        //     var btn=document.createElement('button');
+        //     btn.setAttribute('id','btn1');
+        //     btn.innerHTML="search";
+        //     div.appendChild(btn);
+            
+        //     const exe=()=>{
+        //         btn.addEventListener('click',async()=>{
+               
+        //        // window.location.reload()   
+        //         var arr=await data.filter((ele)=>{
+        //        console.log(document.getElementById('input').value);
+        //        return(
+        //            ele.id==document.getElementById('input').value || ele.title.includes(document.getElementById('input').value) ||ele.content.includes(document.getElementById('input').value)
+        //        )   
+        //    })
+            if(search.value!="")
+            {
+           console.log(await arr);
+           obj={
+                   data:await arr,
+                   record_per_page:10,
+                   page:0,
+                   btn_id:['first','prev','next','last'],
+                   print_id:'print',
+                   table_id:'tbl1',
+                   }
+           console.log(obj);
+               document.getElementById('next').addEventListener('click',()=>{
+                       start(obj,'next');
+                   })
+                   document.getElementById('prev').addEventListener('click',()=>{
+                       start(obj,'prev');
+                   })
+                   document.getElementById('first').addEventListener('click',()=>{
+                       start(obj,'first');
+                   })
+                   document.getElementById('last').addEventListener('click',()=>{
+                       start(obj,'last');
+                   })
+                   const pageload=()=>{
+                       printdata(0,obj.record_per_page,obj);
+                   }            
+                   window.onload(pageload())      
+                }   
+           })
+            }
+
+            if(search.value=="")
+            {
+                obj={
+                data:await data,
+                record_per_page:10,
+                page:0,
+                btn_id:['first','prev','next','last'],
+                print_id:'print',
+                table_id:'tbl1',
+                 }
+                   
+                    exe();
+                    console.log(obj)
+                    document.getElementById('next').addEventListener('click',()=>{
+                        start(obj,'next');
+                    })
+                    document.getElementById('prev').addEventListener('click',()=>{
+                        start(obj,'prev');
+                    })
+                    document.getElementById('first').addEventListener('click',()=>{
+                        start(obj,'first');
+                    })
+                    document.getElementById('last').addEventListener('click',()=>{
+                        start(obj,'last');
+                    })
+                    const pageload=()=>{
+                        printdata(0,obj.record_per_page,obj);
+                    }            
+                    window.onload(pageload())
+            }
+                     
+    })
+
+            </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<a href="/insert-update-employee-form/">Add New Candidate</a>
+<div id="search">
+    <!-- <input type="text" id="input"> -->
+</div>
+
+<body id="body">
+    <div class="page-btn" style="display: flex; gap: 10px;">
+        <button  id="first"><<</button>
+        <button  id="prev"><</button>
+
+        <p id="print">0</p>
+
+         <button  id="next">></button>
+        <button  id="last">>></button>
+    </div>
+   
+    <table id=tbl1></table>
+</body>
+
+</html>
